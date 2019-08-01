@@ -6,13 +6,17 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import me.ebenezergraham.gcu.mpd.weatherforecast.MainActivity;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
+import me.ebenezergraham.gcu.mpd.weatherforecast.service.ForecastRepository;
+
 public class PageViewModel extends ViewModel {
 
     private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
-    private LiveData<String> mText = Transformations.map(mIndex, new Function<Integer, String>() {
+    private LiveData<Forecast> mForecast = Transformations.map(mIndex, new Function<Integer, Forecast>() {
         @Override
-        public String apply(Integer input) {
-            return "Hello world from section: " + input;
+        public Forecast apply(Integer input) {
+            return new Forecast();
         }
     });
 
@@ -20,7 +24,7 @@ public class PageViewModel extends ViewModel {
         mIndex.setValue(index);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<Forecast> getForecast() {
+        return mForecast;
     }
 }

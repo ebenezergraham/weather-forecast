@@ -11,4 +11,6 @@
     <string name="card_title">Weather Title</string>
     <string name="card_content">Content</string>
     <string name="action_more_details">More Details</string>
+    <string name="student_details">S1725987</string>
+
 </resources>

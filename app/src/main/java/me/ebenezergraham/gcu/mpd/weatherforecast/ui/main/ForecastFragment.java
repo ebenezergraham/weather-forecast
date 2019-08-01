@@ -4,32 +4,39 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
-import me.ebenezergraham.gcu.mpd.weatherforecast.models.Forecast;
+import me.ebenezergraham.gcu.mpd.weatherforecast.adapter.DaysRecycler;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
 import me.ebenezergraham.gcu.mpd.weatherforecast.service.Parser;
 
 /**
- * A placeholder fragment containing a simple view.
+ * @Author Ebenezer Graham
+ * Matric Number: S1725987
  */
 public class ForecastFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
 
     private PageViewModel pageViewModel;
+    RecyclerView recyclerView;
+    DaysRecycler daysRecycler;
+    ArrayList<Forecast> forecasts;
+    ArrayList<WeatherDetail> days;
 
     private Map<String,String> cities;
 
@@ -55,41 +62,24 @@ public class ForecastFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        loadCities();
-        //CardView cardView = (CardView) findViewById(R.id.cardView);
-        //cardView.setCardBackgroundColor(R.color.colorAccent);
-        //cardView.setCardElevation();
-        //cardView.setMaxCardElevation(...);
-        //cardView.setRadius(...);
-        //cardView.setPreventCornerOverlap(...);
-        //cardView.setUseCompatPadding(...);
-        //fetchWeather().get()
-        pageViewModel.getText().observe(this, new Observer<String>() {
+        List<WeatherDetail> test = new ArrayList<WeatherDetail>();
+        test.add(new WeatherDetail());
+        test.add(new WeatherDetail());
+        test.add(new WeatherDetail());
+        test.add(new WeatherDetail());
+        daysRecycler = new DaysRecycler(test);
+
+        recyclerView = (RecyclerView) root.findViewById(R.id.days);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(daysRecycler);
+        pageViewModel.getForecast().observe(this, new Observer< Forecast>() {
             @Override
-            public void onChanged(@Nullable String s) {
+            public void onChanged(@Nullable Forecast s) {
 
             }
         });
         return root;
     }
 
-    private List<Forecast> fetchWeather(){
-        List<Forecast> forecast = new ArrayList<>();
-        Parser parser = new Parser();
-        for (Map.Entry entry: cities.entrySet()){
-            forecast.add(parser.fetch(entry.getValue().toString()));
-        }
-        return forecast;
-    }
-
-    private void loadCities(){
-        this.cities = new HashMap<>();
-        cities.put("Glasgow","2648579");
-        cities.put("London","2643743");
-        cities.put("New York","5128581");
-        cities.put("Oman","287286");
-        cities.put("Mauritius","934154");
-        cities.put("Bangladesh","1185241");
-        cities.put("Cape Coast","2302357");
-    }
 }

@@ -1,4 +1,4 @@
-package me.ebenezergraham.gcu.mpd.weatherforecast.models;
+package me.ebenezergraham.gcu.mpd.weatherforecast.model;
 /*
 ebenezergraham created on 7/25/19
 */

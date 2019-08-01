@@ -1,17 +1,23 @@
-package me.ebenezergraham.gcu.mpd.weatherforecast.ui.main;
+package me.ebenezergraham.gcu.mpd.weatherforecast.adapter;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
+import me.ebenezergraham.gcu.mpd.weatherforecast.ui.main.ForecastFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -31,8 +37,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
         return ForecastFragment.newInstance(position + 1);
     }
 
@@ -44,7 +48,22 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
         return TAB_TITLES.length;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder
+    {
+        ImageView imgTvShow;
+        TextView textTvShow;
+        CardView cv;
+
+        public ViewHolder(View itemView)
+        {
+            super(itemView);
+            imgTvShow = (ImageView)itemView.findViewById(R.id.card_image);
+            textTvShow = (TextView)itemView.findViewById(R.id.card_title);
+            cv = (CardView)itemView.findViewById(R.id.cv);
+        }
+
     }
 }

@@ -4,10 +4,9 @@ ebenezergraham created on 7/25/19
 */
 
 import android.util.Log;
-import android.util.Xml;
 
-import me.ebenezergraham.gcu.mpd.weatherforecast.models.Forecast;
-import me.ebenezergraham.gcu.mpd.weatherforecast.models.WeatherDetail;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -16,15 +15,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.*;
 
-public class Parser {
+public class Parser extends XmlPullParserFactory {
 
 
     private static String baseUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/";

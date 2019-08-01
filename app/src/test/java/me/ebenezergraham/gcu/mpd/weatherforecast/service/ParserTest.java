@@ -10,9 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import me.ebenezergraham.gcu.mpd.weatherforecast.models.Forecast;
-
-import static org.junit.Assert.*;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 
 public class ParserTest {
 	final Parser parser = new Parser();
