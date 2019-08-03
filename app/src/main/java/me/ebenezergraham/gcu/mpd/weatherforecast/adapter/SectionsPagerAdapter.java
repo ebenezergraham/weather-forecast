@@ -13,10 +13,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
+import me.ebenezergraham.gcu.mpd.weatherforecast.service.Parser;
 import me.ebenezergraham.gcu.mpd.weatherforecast.ui.main.ForecastFragment;
 
 /**
@@ -27,17 +31,26 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static int[] TAB_TITLES = new int[] {R.string.glasgow, R.string.london,R.string.new_york, R.string.oman, R.string.mauritius, R.string.bangladesh, R.string.cape_coast};
-    private static Map<String, String> cities;
+    public static Map<String, String> cities;
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
+        this.cities = new HashMap<>();
+        cities.put("Glasgow","2648579");
+        cities.put("London","2643743");
+        cities.put("New York","5128581");
+        cities.put("Oman","287286");
+        cities.put("Mauritius","934154");
+        cities.put("Bangladesh","1185241");
+        cities.put("Cape Coast","2302357");
     }
 
     @Override
     public Fragment getItem(int position) {
-        return ForecastFragment.newInstance(position + 1);
+        String city = getPageTitle(position).toString();
+        return ForecastFragment.newInstance(position + 1, city);
     }
 
     @Nullable
@@ -65,5 +78,14 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             cv = (CardView)itemView.findViewById(R.id.cv);
         }
 
+    }
+
+    public List<Forecast> fetchWeatherForLocations(){
+        List<Forecast> forecast = new ArrayList<>();
+        Parser parser = new Parser();
+        for (Map.Entry entry: cities.entrySet()){
+            forecast.add(parser.fetch(entry.getValue().toString()));
+        }
+        return forecast;
     }
 }

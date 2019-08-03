@@ -36,7 +36,8 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         WeatherDetail weatherDetail = weatherDetailList.get(position);
-        holder.textTvShow.setText(weatherDetail.getTitle());
+        holder.cardTitle.setText(weatherDetail.getTitle());
+        holder.cardDescription.setText(weatherDetail.getDescription().get(1));
 
     }
 
@@ -47,16 +48,24 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        ImageView imgTvShow;
-        TextView textTvShow;
+        ImageView cardImage;
+        TextView cardTitle;
+        TextView cardDescription;
         CardView cv;
 
         public ViewHolder(View itemView)
         {
             super(itemView);
-            imgTvShow = (ImageView)itemView.findViewById(R.id.card_image);
-            textTvShow = (TextView)itemView.findViewById(R.id.card_title);
+            cardImage = (ImageView)itemView.findViewById(R.id.card_image);
+            cardTitle = (TextView)itemView.findViewById(R.id.card_title);
+            cardDescription = (TextView)itemView.findViewById(R.id.temp);
             cv = (CardView)itemView.findViewById(R.id.cv);
+            cv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    cv.setMinimumHeight(cv.getHeight()+100);
+                }
+            });
         }
 
     }

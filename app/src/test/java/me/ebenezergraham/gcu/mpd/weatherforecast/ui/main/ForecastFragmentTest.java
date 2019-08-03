@@ -13,7 +13,6 @@ public class ForecastFragmentTest {
     @Test
     public void fetchAllLocations(){
         WeatherService forecastFragment = new WeatherService();
-        forecastFragment.loadCities();
         List<Forecast> res =  forecastFragment.fetchWeatherForLocations();
         for (Forecast forecast : res){
             Assert.assertNotNull(forecast);

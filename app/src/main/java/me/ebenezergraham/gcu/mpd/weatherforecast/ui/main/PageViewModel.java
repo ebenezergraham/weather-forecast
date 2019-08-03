@@ -1,30 +1,43 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast.ui.main;
 
-import androidx.arch.core.util.Function;
+import android.os.AsyncTask;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
-import me.ebenezergraham.gcu.mpd.weatherforecast.MainActivity;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
+
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
-import me.ebenezergraham.gcu.mpd.weatherforecast.service.ForecastRepository;
+import me.ebenezergraham.gcu.mpd.weatherforecast.service.Parser;
+import me.ebenezergraham.gcu.mpd.weatherforecast.service.WeatherService;
 
 public class PageViewModel extends ViewModel {
 
-    private MutableLiveData<Integer> mIndex = new MutableLiveData<>();
-    private LiveData<Forecast> mForecast = Transformations.map(mIndex, new Function<Integer, Forecast>() {
-        @Override
-        public Forecast apply(Integer input) {
-            return new Forecast();
-        }
-    });
+    private MutableLiveData<Forecast> mIndex = new MutableLiveData<>();
 
-    public void setIndex(int index) {
-        mIndex.setValue(index);
+    public PageViewModel() {
+    }
+
+    public void getData(final String location){
+        WeatherService weatherService = new WeatherService();
+        AsyncTask<String,Integer,Forecast> res = weatherService.execute(location);
+        try {
+            setForecast(res.get());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void setForecast(Forecast forecast) {
+        mIndex.setValue(forecast);
     }
 
     public LiveData<Forecast> getForecast() {
-        return mForecast;
+        return mIndex;
     }
 }

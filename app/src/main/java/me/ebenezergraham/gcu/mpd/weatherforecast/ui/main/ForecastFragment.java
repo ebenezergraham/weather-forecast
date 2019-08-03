@@ -20,9 +20,10 @@ import java.util.Map;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
 import me.ebenezergraham.gcu.mpd.weatherforecast.adapter.DaysRecycler;
+import me.ebenezergraham.gcu.mpd.weatherforecast.adapter.SectionsPagerAdapter;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
-import me.ebenezergraham.gcu.mpd.weatherforecast.service.Parser;
+import me.ebenezergraham.gcu.mpd.weatherforecast.service.WeatherService;
 
 /**
  * @Author Ebenezer Graham
@@ -31,19 +32,22 @@ import me.ebenezergraham.gcu.mpd.weatherforecast.service.Parser;
 public class ForecastFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private static final String ARG_SECTION_NAME = "section_name";
 
     private PageViewModel pageViewModel;
     RecyclerView recyclerView;
     DaysRecycler daysRecycler;
+    WeatherService weatherService = new WeatherService();
     ArrayList<Forecast> forecasts;
     ArrayList<WeatherDetail> days;
 
     private Map<String,String> cities;
 
-    public static ForecastFragment newInstance(int index) {
+    public static ForecastFragment newInstance(int index, String city) {
         ForecastFragment fragment = new ForecastFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(ARG_SECTION_NUMBER, index);
+        bundle.putString(ARG_SECTION_NAME, city);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -52,31 +56,35 @@ public class ForecastFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
+
+
         int index = 1;
+        String city = "";
+        Forecast forecast = null;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
+            city = getArguments().getString(ARG_SECTION_NAME);
         }
-        pageViewModel.setIndex(index);
+        pageViewModel.getData(SectionsPagerAdapter.cities.get(city));
+       // pageViewModel.setForecast(forecast);
+
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
-        List<WeatherDetail> test = new ArrayList<WeatherDetail>();
-        test.add(new WeatherDetail());
-        test.add(new WeatherDetail());
-        test.add(new WeatherDetail());
-        test.add(new WeatherDetail());
-        daysRecycler = new DaysRecycler(test);
+
 
         recyclerView = (RecyclerView) root.findViewById(R.id.days);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(daysRecycler);
-        pageViewModel.getForecast().observe(this, new Observer< Forecast>() {
+        pageViewModel.getForecast().observe(this, new Observer<Forecast>() {
             @Override
             public void onChanged(@Nullable Forecast s) {
-
+                Forecast forecast = pageViewModel.getForecast().getValue();
+                List<WeatherDetail> data = forecast.getItems();
+                daysRecycler = new DaysRecycler(data);
             }
         });
         return root;

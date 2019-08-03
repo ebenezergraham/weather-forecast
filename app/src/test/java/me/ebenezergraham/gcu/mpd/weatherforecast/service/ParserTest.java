@@ -2,6 +2,8 @@ package me.ebenezergraham.gcu.mpd.weatherforecast.service;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -12,6 +14,7 @@ import java.io.InputStream;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 
+@RunWith(RobolectricTestRunner.class)
 public class ParserTest {
 	final Parser parser = new Parser();
 	@Test

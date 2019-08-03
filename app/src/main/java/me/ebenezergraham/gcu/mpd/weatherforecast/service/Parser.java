@@ -9,6 +9,7 @@ import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
@@ -94,6 +95,7 @@ public class Parser extends XmlPullParserFactory {
             if (stream != null) {
                 try {
                     stream.close();
+                    System.out.println(forecast.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -109,8 +111,8 @@ public class Parser extends XmlPullParserFactory {
             URL url = new URL(baseUrl + locationId);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-            conn.setReadTimeout(10000);
-            conn.setConnectTimeout(15000);
+            conn.setReadTimeout(11000);
+            conn.setConnectTimeout(25000);
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
 
@@ -126,8 +128,8 @@ public class Parser extends XmlPullParserFactory {
             forecast = new Forecast();
             parse(parser, forecast);
             stream.close();
-        } catch (Exception e) {
-            Log.e("Parser", e.getMessage());
+        } catch (XmlPullParserException | IOException e) {
+            Log.e("Parser", e.getLocalizedMessage());
         }
 
         return forecast;

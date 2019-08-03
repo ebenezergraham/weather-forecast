@@ -1,6 +1,7 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -21,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
 //        weatherService.loadCities();
 //        weatherService.fetchWeatherForLocations();
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        final ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         final TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
+        //todo: add scroll arrows
+        viewPager.arrowScroll(View.FOCUS_LEFT);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
@@ -40,7 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
+                System.out.println("State: "+state+"tab: "+ tabs.getSelectedTabPosition());
+                if(state>0 && tabs.getSelectedTabPosition()==6){
+                    viewPager.setCurrentItem(0);
+                }else  if(state>0 && tabs.getSelectedTabPosition()==0){
+                    viewPager.setCurrentItem(6);
+                }
             }
         });
 
