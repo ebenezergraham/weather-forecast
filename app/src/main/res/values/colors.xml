@@ -3,6 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorSecondaryText">#555</color>
-    <color name="title">#D81B69</color>
+    <color name="colorSecondaryText">#1C2221</color>
+    <color name="gradient_one">#0ABFBC</color>
+    <color name="gradient_two">#FC354C</color>
+    <color name="gradient_moonrise">#DAE2F8</color>
+    <color name="gradient_moonrise_two">#D6A4A4</color>
+    <color name="semiTransparentColor">#20ffffff</color>
+
 </resources>

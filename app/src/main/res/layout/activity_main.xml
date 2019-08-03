@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/new_york"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -38,4 +39,15 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/footer"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="712dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

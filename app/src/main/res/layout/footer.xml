@@ -9,6 +9,7 @@
         android:text="@string/student_details"
         android:textSize="@dimen/card_title"
         android:textAlignment="center"
-        android:textColor="#555" />
+        android:background="@color/colorAccent"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

@@ -5,9 +5,6 @@ ebenezergraham created on 7/25/19
 
 import android.util.Log;
 
-import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
-import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -20,7 +17,26 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.*;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
+
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.CHANNEL;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.DESCRIPTION;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.HUMIDITY;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.ITEM;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.LINK;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.MAXIMUM_TEMPERATURE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.MINIMUM_TEMPERATURE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.POLLUTION;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.PRESSURE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.PUB_DATE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.SUNRISE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.SUNSET;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.TITLE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.UV_RISK;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.VISIBILITY;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.WIND_DIRECTION;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.WIND_SPEED;
 
 public class Parser extends XmlPullParserFactory {
 
@@ -52,7 +68,47 @@ public class Parser extends XmlPullParserFactory {
                                 item.setLink(parser.nextText());
                             } else if (name.equalsIgnoreCase(DESCRIPTION)) {
                                 Log.i("Attribute", "description");
-                                item.setDescription(Arrays.asList(parser.nextText().trim().split(",")));
+                                List<String> description = Arrays.asList(parser.nextText().trim().split(","));
+                                String[] result;
+                                for (String entry : description) {
+                                    result = entry.split(":");
+                                    switch (result[0].trim()) {
+                                        case MAXIMUM_TEMPERATURE:
+                                            item.setMaximumTemperature(result[1]);
+                                            break;
+                                        case MINIMUM_TEMPERATURE:
+                                            item.setMinimumTemperature(result[1]);
+                                            break;
+                                        case WIND_DIRECTION:
+                                            item.setWindDirection(result[1]);
+                                            break;
+                                        case WIND_SPEED:
+                                            item.setWindSpeed(result[1]);
+                                            break;
+                                        case VISIBILITY:
+                                            item.setVisibility(result[1]);
+                                            break;
+                                        case PRESSURE:
+                                            item.setPressure(result[1]);
+                                            break;
+                                        case HUMIDITY:
+                                            item.setHumidity(result[1]);
+                                            break;
+                                        case UV_RISK:
+                                            item.setUvRisk(result[1]);
+                                            break;
+                                        case POLLUTION:
+                                            item.setPollution(result[1]);
+                                            break;
+                                        case SUNRISE:
+                                            item.setSunrise(result[1]);
+                                            break;
+                                        case SUNSET:
+                                            item.setSunset(result[1]);
+                                            break;
+                                        default:
+                                    }
+                                }
                             } else if (name.equalsIgnoreCase(PUB_DATE)) {
                                 Log.i("Attribute", "date");
                                 //item.setDate(parser.nextText());
@@ -60,7 +116,7 @@ public class Parser extends XmlPullParserFactory {
                                 Log.i("Attribute", "title");
                                 item.setTitle(parser.nextText().trim());
                             }
-                        }else if (forecast != null) {
+                        } else if (forecast != null) {
                             if (name.equalsIgnoreCase(LINK)) {
                                 Log.i("Attribute", "setLink");
                                 forecast.setLink(parser.nextText().trim());

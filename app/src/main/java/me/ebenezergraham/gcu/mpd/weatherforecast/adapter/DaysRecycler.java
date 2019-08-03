@@ -36,9 +36,12 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         WeatherDetail weatherDetail = weatherDetailList.get(position);
-        holder.cardTitle.setText(weatherDetail.getTitle());
-        holder.cardDescription.setText(weatherDetail.getDescription().get(1));
-
+        holder.title.setText(weatherDetail.getTitle());
+        holder.maximumTemperature.setText(weatherDetail.getMaximumTemperature());
+        holder.minimumTemperature.setText(weatherDetail.getMinimumTemperature());
+        holder.windSpeed.setText(weatherDetail.getWindSpeed());
+        holder.windDirection.setText(weatherDetail.getWindDirection());
+        holder.pressure.setText(weatherDetail.getPressure());
     }
 
     @Override
@@ -48,25 +51,26 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        ImageView cardImage;
-        TextView cardTitle;
-        TextView cardDescription;
+        ImageView image;
+        TextView title;
+        TextView maximumTemperature;
+        TextView minimumTemperature;
+        TextView windSpeed;
+        TextView windDirection;
+        TextView pressure;
         CardView cv;
 
         public ViewHolder(View itemView)
         {
             super(itemView);
-            cardImage = (ImageView)itemView.findViewById(R.id.card_image);
-            cardTitle = (TextView)itemView.findViewById(R.id.card_title);
-            cardDescription = (TextView)itemView.findViewById(R.id.temp);
+            image = (ImageView)itemView.findViewById(R.id.card_image);
+            title = (TextView)itemView.findViewById(R.id.card_title);
+            minimumTemperature = (TextView)itemView.findViewById(R.id.minimum_temperature);
+            maximumTemperature = (TextView)itemView.findViewById(R.id.maximum_temperature);
+            windDirection = (TextView)itemView.findViewById(R.id.wind_direction);
+            windSpeed = (TextView)itemView.findViewById(R.id.wind_speed);
+            pressure = (TextView)itemView.findViewById(R.id.pressure);
             cv = (CardView)itemView.findViewById(R.id.cv);
-            cv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    cv.setMinimumHeight(cv.getHeight()+100);
-                }
-            });
         }
-
     }
 }

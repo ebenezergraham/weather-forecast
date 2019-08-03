@@ -9,7 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 public class Forecast {
-	
+
+	private String city;
 	private String title;
 	private String link;
 	private String description;
@@ -90,5 +91,13 @@ public class Forecast {
 				", imageUrl=" + imageUrl +
 				", items=" + items+
 				'}';
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

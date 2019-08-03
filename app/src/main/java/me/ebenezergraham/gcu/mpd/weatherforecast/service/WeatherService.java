@@ -1,26 +1,24 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast.service;
 
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ExecutionException;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 
 
 public class WeatherService  extends AsyncTask<String, Integer, Forecast> {
 
+    public ForecastRepository forecastRepository = ForecastRepository.getInstance();
+
     private Parser parser = new Parser();
     public Map<String,String> cities;
-
-    protected void onProgressUpdate(Integer... progress) {
-    }
-
-    protected void onPostExecute(Forecast result) {
-    }
 
     public WeatherService() {
         this.cities = new HashMap<>();
@@ -41,18 +39,43 @@ public class WeatherService  extends AsyncTask<String, Integer, Forecast> {
         for (int i = 0; i < count; i++) {
             forecast = parser.fetch(strings[i]);
             publishProgress((int) ((i / (float) count) * 100));
-            // Escape early if cancel() is called
             if (isCancelled()) break;
         }
         return forecast;
     }
 
-    public List<Forecast> fetchWeatherForLocations(){
-        List<Forecast> forecast = new ArrayList<>();
+    protected void onPostExecute(Forecast result) {
+    }
+    public void job(){
+        final Timer timer = new Timer();
+
+        // Use randomized data to update the coin stats every 10 seconds.
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                    }
+                });
+            }
+        }, 60000 / 6, 60000 / 6);
+    }
+
+    public Map<String, Forecast> fetchWeatherForLocations(){
+        Map<String, Forecast> list = new HashMap<>();
+
         Parser parser = new Parser();
         for (Map.Entry entry: cities.entrySet()){
-            forecast.add(parser.fetch(entry.getValue().toString()));
+            AsyncTask<String, Integer, Forecast> task = new WeatherService().execute(entry.getValue().toString());
+            try {
+                list.put(entry.getKey().toString(),task.get());
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-        return forecast;
+        return list;
     }
 }

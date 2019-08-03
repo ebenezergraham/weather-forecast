@@ -1,28 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:animateLayoutChanges="true"
-    >
+    android:animateLayoutChanges="true">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cv"
-        >
+        android:elevation="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        card_view:cardBackgroundColor="@color/semiTransparentColor"
+        app:cardElevation="5dp"
+        android:layout_margin="@dimen/card_margin"
+        app:cardBackgroundColor="@android:color/white"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="@dimen/card_margin">
+            android:orientation="vertical">
 
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:scaleType="centerCrop"
-                android:id="@+id/card_image"
-                android:src="@drawable/new_york" />
+                android:layout_height="150dp">
+
+                <ImageView
+                    android:id="@+id/card_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/bg_description"
+                    android:src="@drawable/overlay" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:id="@+id/weather"/>
+
+                <TextView
+                    android:id="@+id/minimum_temperature"
+                    android:layout_width="205dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/card_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="40sp" />
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,13 +65,35 @@
                     android:layout_marginBottom="8dp"
                     android:text="@string/card_title"
                     android:id="@+id/card_title"
-                    android:textColor="#000"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/temp"
+                    android:id="@+id/maximum_temperature"
+                    android:text="@string/card_content"
+                    android:textSize="@dimen/detail_size"
+                    android:textColor="@color/colorSecondaryText" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/wind_direction"
+                    android:text="@string/card_content"
+                    android:textColor="@color/colorSecondaryText" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/wind_speed"
+                    android:text="@string/card_content"
+                    android:textColor="@color/colorSecondaryText" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pressure"
                     android:text="@string/card_content"
                     android:textColor="@color/colorSecondaryText" />
             </LinearLayout>

@@ -6,11 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
-import me.ebenezergraham.gcu.mpd.weatherforecast.service.Parser;
 import me.ebenezergraham.gcu.mpd.weatherforecast.service.WeatherService;
 
 public class PageViewModel extends ViewModel {
