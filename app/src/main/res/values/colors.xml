@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Ebenezer Kwesi Akyen Graham - S1725987-->
 <resources>
     <color name="colorPrimary">#484767</color>
     <color name="colorPrimaryDark">#3C3B55</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#71B280</color>
     <color name="colorSecondaryText">#484767</color>
     <color name="gradient_one">#0ABFBC</color>
     <color name="gradient_two">#FC354C</color>
     <color name="gradient_moonrise">#DAE2F8</color>
     <color name="gradient_moonrise_two">#D6A4A4</color>
-    <color name="semiTransparentColor">#20ffffff</color>
+    <color name="semiTransparentColor">#9F13121B</color>
+    <color name="semiTransparent">#E9FFFEFE</color>
     <color name="black_overlay">#66000000</color>
 </resources>

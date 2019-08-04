@@ -27,14 +27,11 @@ public class Parser extends XmlPullParserFactory {
 
 
     private static String baseUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/";
-    private boolean done = false;
-
 
     public List<WeatherDetail> parse(XmlPullParser parser, Forecast forecast) {
         List<WeatherDetail> list = forecast.getItems();
         InputStream stream = null;
         try {
-
             int eventType = parser.getEventType();
             boolean done = false;
             WeatherDetail item = null;

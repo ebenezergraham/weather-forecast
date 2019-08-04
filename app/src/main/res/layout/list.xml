@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Ebenezer Kwesi Akyen Graham - S1725987-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
@@ -14,6 +15,7 @@
         android:elevation="4dp"
         android:clickable="true"
         android:focusable="true"
+        android:backgroundTint="@color/semiTransparent"
         card_view:cardBackgroundColor="@color/semiTransparentColor"
         app:cardElevation="5dp"
         android:layout_margin="@dimen/card_margin"
@@ -35,8 +37,7 @@
                     android:layout_height="150dp"
                     android:scaleType="centerCrop"
                     android:contentDescription="@string/bg_description"
-                    android:backgroundTintMode="add"
-                    android:backgroundTint="@color/colorPrimary" />
+                    android:tint="@color/semiTransparentColor"/>
 
                 <TextView
                     android:layout_width="wrap_content"

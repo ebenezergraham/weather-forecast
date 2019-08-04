@@ -1,15 +1,9 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast.service;
 
 import android.os.AsyncTask;
-import android.os.Handler;
-import android.os.Looper;
-
-import androidx.preference.PreferenceManager;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
@@ -19,9 +13,6 @@ import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
  * Matric Number: S1725987
  */
 public class WeatherService extends AsyncTask<String, Integer, Forecast> {
-
-    public ForecastRepository forecastRepository = ForecastRepository.getInstance();
-
 
     private Parser parser;
     public Map<String, String> cities;
@@ -48,25 +39,6 @@ public class WeatherService extends AsyncTask<String, Integer, Forecast> {
             if (isCancelled()) break;
         }
         return forecast;
-    }
-
-    protected void onPostExecute(Forecast result) {
-    }
-
-    public void job() {
-        final Timer timer = new Timer();
-
-        // Use randomized data to update the coin stats every 10 seconds.
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                    }
-                });
-            }
-        }, 60000 / 6, 60000 / 6);
     }
 
     public Map<String, Forecast> fetchWeatherForLocations() {

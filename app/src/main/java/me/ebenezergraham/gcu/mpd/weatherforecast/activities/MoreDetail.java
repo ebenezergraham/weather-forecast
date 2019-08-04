@@ -14,10 +14,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
-import me.ebenezergraham.gcu.mpd.weatherforecast.MainActivity;
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
 
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
 public class MoreDetail extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
@@ -77,7 +80,8 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            return true;
+            Intent setting = new Intent(this, SettingsActivity.class);
+            startActivity(setting);
         }
 
         return super.onOptionsItemSelected(item);
@@ -88,13 +92,9 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-            Intent intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.action_settings) {
-            Intent setting = new Intent(this,SettingsActivity.class);
+        if (id == R.id.action_settings) {
+            Intent setting = new Intent(this, SettingsActivity.class);
             startActivity(setting);
-
         } else if (id == R.id.nav_share) {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");

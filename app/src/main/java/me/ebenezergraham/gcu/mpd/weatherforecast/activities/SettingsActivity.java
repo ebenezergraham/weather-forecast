@@ -8,6 +8,10 @@ import androidx.preference.PreferenceFragmentCompat;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
 
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -35,6 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
         }
+
     }
 
 

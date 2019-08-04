@@ -1,5 +1,5 @@
+<!--Ebenezer Kwesi Akyen Graham - S1725987-->
 <resources>
-    <!-- Reply Preference -->
     <string-array name="reply_entries">
         <item>8:00</item>
         <item>12:00</item>

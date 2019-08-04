@@ -1,3 +1,4 @@
+<!--Ebenezer Kwesi Akyen Graham - S1725987-->
 <androidx.preference.PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory app:title="@string/messages_header">

@@ -24,15 +24,7 @@ public class ForecastRepository {
 
     public ForecastRepository() {
     }
-
-    public Map<String, Forecast> getRepository() {
-        return repository;
-    }
-
-    public void setRepository(Map<String, Forecast> repository) {
-        this.repository = repository;
-    }
-
+    
     public MutableLiveData<Forecast> getForecast(String source) {
         MutableLiveData<Forecast> data = new MutableLiveData<>();
         Parser parser = new Parser();
