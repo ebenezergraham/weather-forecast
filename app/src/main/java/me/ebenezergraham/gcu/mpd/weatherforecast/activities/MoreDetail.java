@@ -29,8 +29,8 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
         WeatherDetail weatherDetail = (WeatherDetail) getIntent().getSerializableExtra("data");
         setContentView(R.layout.activity_more_detail);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(weatherDetail.getTitle());
-        setSupportActionBar(toolbar);
+        //toolbar.setTitle(weatherDetail.getTitle());
+       // setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         TextView minTemp = findViewById(R.id.minimum_temperature);

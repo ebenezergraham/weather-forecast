@@ -2,11 +2,11 @@
 <resources>
     <string-array name="reply_entries">
         <item>8:00</item>
-        <item>12:00</item>
+        <item>20:00</item>
     </string-array>
 
     <string-array name="reply_values">
         <item>8:00</item>
-        <item>12:00</item>
+        <item>20:00</item>
     </string-array>
 </resources>

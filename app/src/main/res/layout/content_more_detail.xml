@@ -8,8 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.MoreDetail"
     android:background="@drawable/midnight"
-    tools:showIn="@layout/app_bar_more_detail"
-    >
+    tools:showIn="@layout/app_bar_more_detail">
 
     <TextView
         android:id="@+id/minimum_temperature"
@@ -27,7 +26,8 @@
     <TextView
         android:id="@+id/humidity"
         android:layout_width="match_parent"
-        android:gravity="center"        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
         android:textColor="@android:color/white"
 
         android:layout_marginTop="@dimen/text_margin"
@@ -40,7 +40,8 @@
     <TextView
         android:id="@+id/visibility"
         android:layout_width="match_parent"
-        android:gravity="center"        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
         android:textColor="@android:color/white"
 
         android:layout_marginTop="@dimen/text_margin"
@@ -97,7 +98,8 @@
     <TextView
         android:id="@+id/sunrise"
         android:layout_width="match_parent"
-        android:gravity="center"        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
         android:textColor="@android:color/white"
 
         android:layout_marginTop="@dimen/text_margin"
@@ -121,4 +123,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/visibility"
         app:layout_constraintVertical_bias="0.046" />
+
+    <include
+        layout="@layout/footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="-17dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

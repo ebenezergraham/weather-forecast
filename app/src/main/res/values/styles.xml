@@ -10,10 +10,20 @@
 
     <style name="PrimaryFlatButton" parent="Theme.AppCompat.Light">
         <item name="android:buttonStyle">
-            @style/Widget.AppCompat.Button.Borderless.Colored
+            @style/Widget.AppCompat.Button.Colored
         </item>
+        <item name="android:textColor">@android:color/white</item>
+
         <item name="colorAccent">#FFAB40</item>
     </style>
+
+    <style name="PrimaryElevatedButton" parent="Theme.AppCompat.Light">
+        <item name="android:buttonStyle">
+            @style/Widget.AppCompat.Button.Colored
+        </item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

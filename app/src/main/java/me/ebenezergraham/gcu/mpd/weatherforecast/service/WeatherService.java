@@ -41,6 +41,8 @@ public class WeatherService extends AsyncTask<String, Integer, Forecast> {
         return forecast;
     }
 
+
+
     public Map<String, Forecast> fetchWeatherForLocations() {
         Map<String, Forecast> list = new HashMap<>();
 
