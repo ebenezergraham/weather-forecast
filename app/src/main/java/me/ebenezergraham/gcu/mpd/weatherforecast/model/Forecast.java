@@ -1,103 +1,104 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast.model;
-/*
-ebenezergraham created on 7/25/19
-*/
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
 public class Forecast {
 
-	private String city;
-	private String title;
-	private String link;
-	private String description;
-	private Date date;
-	private String imageTitle;
-	private URL imageUrl;
-	
-	List<WeatherDetail> items;
-	
-	public Forecast() {
-		items = new ArrayList<>();
-	}
+    private String city;
+    private String title;
+    private String link;
+    private String description;
+    private Date date;
+    private String imageTitle;
+    private URL imageUrl;
 
-	public String getTitle() {
-		return title;
-	}
+    List<WeatherDetail> items;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public Forecast() {
+        items = new ArrayList<>();
+    }
 
-	public String getLink() {
-		return link;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setLink(String link) {
-		this.link = link;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getLink() {
+        return link;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setLink(String link) {
+        this.link = link;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getImageTitle() {
-		return imageTitle;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setImageTitle(String imageTitle) {
-		this.imageTitle = imageTitle;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public URL getImageUrl() {
-		return imageUrl;
-	}
+    public String getImageTitle() {
+        return imageTitle;
+    }
 
-	public void setImageUrl(URL imageUrl) {
-		this.imageUrl = imageUrl;
-	}
+    public void setImageTitle(String imageTitle) {
+        this.imageTitle = imageTitle;
+    }
 
-	public List<WeatherDetail> getItems() {
-		return items;
-	}
+    public URL getImageUrl() {
+        return imageUrl;
+    }
 
-	public void setItems(List<WeatherDetail> items) {
-		this.items = items;
-	}
+    public void setImageUrl(URL imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
-	@Override
-	public String toString() {
-		return "Forecast{" +
-				"title='" + title + '\'' +
-				", link='" + link + '\'' +
-				", description='" + description + '\'' +
-				", date=" + date +
-				", imageTitle='" + imageTitle + '\'' +
-				", imageUrl=" + imageUrl +
-				", items=" + items+
-				'}';
-	}
+    public List<WeatherDetail> getItems() {
+        return items;
+    }
 
-	public String getCity() {
-		return city;
-	}
+    public void setItems(List<WeatherDetail> items) {
+        this.items = items;
+    }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    @Override
+    public String toString() {
+        return "Forecast{" +
+                "title='" + title + '\'' +
+                ", link='" + link + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", imageTitle='" + imageTitle + '\'' +
+                ", imageUrl=" + imageUrl +
+                ", items=" + items +
+                '}';
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

@@ -11,6 +11,10 @@ import com.google.android.material.tabs.TabLayout;
 import me.ebenezergraham.gcu.mpd.weatherforecast.adapter.SectionsPagerAdapter;
 import me.ebenezergraham.gcu.mpd.weatherforecast.service.WeatherService;
 
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
 public class MainActivity extends AppCompatActivity {
 
 
@@ -20,11 +24,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         weatherService.fetchWeatherForLocations();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         final ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);

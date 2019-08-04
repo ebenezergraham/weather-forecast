@@ -10,4 +10,6 @@
     <color name="gradient_moonrise_two">#D6A4A4</color>
     <color name="semiTransparentColor">#20ffffff</color>
 
+    <color name="black_overlay">#66000000</color>
+
 </resources>

@@ -601,4 +601,28 @@
     <string name="wi_wu_sunny">&#xf00d;</string>
     <string name="wi_wu_tstorms">&#xf01e;</string>
     <string name="wi_wu_unknown">&#xf00d;</string>
+
+    <string name="title_activity_more_detail">MoreDetail</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_subtitle">egraha203@caledonian.ac.uk</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Settings</string>
+    <string name="sync_header">Temperature Configuration</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Username</string>
+    <string name="reply_title">Default update times</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Temperature unit (F)</string>
 </resources>

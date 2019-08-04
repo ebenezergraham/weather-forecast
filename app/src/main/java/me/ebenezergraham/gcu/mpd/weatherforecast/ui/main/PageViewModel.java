@@ -11,6 +11,10 @@ import java.util.concurrent.ExecutionException;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 import me.ebenezergraham.gcu.mpd.weatherforecast.service.WeatherService;
 
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
 public class PageViewModel extends ViewModel {
 
     private MutableLiveData<Forecast> mIndex = new MutableLiveData<>();

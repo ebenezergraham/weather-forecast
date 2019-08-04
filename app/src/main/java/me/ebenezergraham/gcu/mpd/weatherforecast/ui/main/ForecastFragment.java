@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import me.ebenezergraham.gcu.mpd.weatherforecast.MainActivity;
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
 import me.ebenezergraham.gcu.mpd.weatherforecast.adapter.DaysRecycler;
 import me.ebenezergraham.gcu.mpd.weatherforecast.adapter.SectionsPagerAdapter;
@@ -52,12 +49,10 @@ public class ForecastFragment extends Fragment {
 
         int index = 1;
         String city = "";
-        Forecast forecast = null;
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_SECTION_NUMBER);
             city = getArguments().getString(ARG_SECTION_NAME);
         }
-        pageViewModel.setForecast(MainActivity.weatherService.forecastRepository.getRepository().get(city));
         pageViewModel.getData(SectionsPagerAdapter.cities.get(city));
     }
 
@@ -71,14 +66,6 @@ public class ForecastFragment extends Fragment {
         List<WeatherDetail> data = forecast.getItems();
         daysRecycler = new DaysRecycler(data);
         recyclerView.setAdapter(daysRecycler);
-        pageViewModel.getForecast().observe(this, new Observer<Forecast>() {
-            @Override
-            public void onChanged(@Nullable Forecast s) {
-                /*Forecast forecast = pageViewModel.getForecast().getValue();
-                List<WeatherDetail> data = forecast.getItems();
-                daysRecycler = new DaysRecycler(data);*/
-            }
-        });
         return root;
     }
 

@@ -1,5 +1,8 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast;
-
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
 public interface Constants {
     String PUB_DATE = "pubDate";
     String DESCRIPTION = "description";

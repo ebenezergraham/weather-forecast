@@ -14,12 +14,17 @@ import java.io.InputStream;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
+
 @RunWith(RobolectricTestRunner.class)
 public class ParserTest {
 	final Parser parser = new Parser();
 	@Test
 	public void fetch() {
-
+		System.out.println("Fetch From API\n");
 		Forecast forecast = parser.fetch("2302357");
 		System.out.println(forecast.toString());
 		Assert.assertNotNull(forecast);
@@ -27,6 +32,7 @@ public class ParserTest {
 
 	@Test
 	public void parse() {
+		System.out.println("Parse XML into POJO\n");
 		Forecast forecast =  null;
 		try {
 			XmlPullParser pullParser = XmlPullParserFactory.newInstance().newPullParser();

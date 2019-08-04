@@ -27,20 +27,22 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/card_image"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:scaleType="centerCrop"
                     android:contentDescription="@string/bg_description"
-                    android:src="@drawable/overlay" />
+                    android:backgroundTintMode="add"
+                    android:backgroundTint="@color/colorPrimary" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
+                    android:padding="@dimen/detail_size"
                     android:id="@+id/weather"/>
 
                 <TextView
@@ -65,37 +67,18 @@
                     android:layout_marginBottom="8dp"
                     android:text="@string/card_title"
                     android:id="@+id/card_title"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
                     android:textSize="18sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/maximum_temperature"
-                    android:text="@string/card_content"
-                    android:textSize="@dimen/detail_size"
-                    android:textColor="@color/colorSecondaryText" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/wind_direction"
-                    android:text="@string/card_content"
-                    android:textColor="@color/colorSecondaryText" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/wind_speed"
                     android:text="@string/card_content"
+                    android:textSize="@dimen/detail_size"
                     android:textColor="@color/colorSecondaryText" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pressure"
-                    android:text="@string/card_content"
-                    android:textColor="@color/colorSecondaryText" />
             </LinearLayout>
 
             <LinearLayout
@@ -103,9 +86,11 @@
                 android:layout_height="wrap_content">
 
                 <Button
+                    android:id="@+id/more_details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/action_more_details"
+                    android:textColor="@color/colorPrimary"
                     android:theme="@style/PrimaryFlatButton" />
             </LinearLayout>
         </LinearLayout>

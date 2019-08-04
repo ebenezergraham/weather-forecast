@@ -7,18 +7,22 @@ import java.util.Map;
 
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
 public class ForecastRepository {
     private static ForecastRepository forecastRepository;
     private Map<String, Forecast> repository = new HashMap<>();
 
-    public static ForecastRepository getInstance(){
-        if (forecastRepository == null){
+    public static ForecastRepository getInstance() {
+        if (forecastRepository == null) {
             forecastRepository = new ForecastRepository();
         }
         return forecastRepository;
     }
 
-    public ForecastRepository(){
+    public ForecastRepository() {
     }
 
     public Map<String, Forecast> getRepository() {
@@ -29,7 +33,7 @@ public class ForecastRepository {
         this.repository = repository;
     }
 
-    public MutableLiveData<Forecast> getForecast(String source){
+    public MutableLiveData<Forecast> getForecast(String source) {
         MutableLiveData<Forecast> data = new MutableLiveData<>();
         Parser parser = new Parser();
         data.setValue(parser.fetch(source));

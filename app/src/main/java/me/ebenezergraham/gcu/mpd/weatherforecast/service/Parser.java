@@ -1,7 +1,4 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast.service;
-/*
-ebenezergraham created on 7/25/19
-*/
 
 import android.util.Log;
 
@@ -20,24 +17,12 @@ import java.util.List;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
 
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.CHANNEL;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.DESCRIPTION;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.HUMIDITY;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.ITEM;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.LINK;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.MAXIMUM_TEMPERATURE;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.MINIMUM_TEMPERATURE;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.POLLUTION;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.PRESSURE;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.PUB_DATE;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.SUNRISE;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.SUNSET;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.TITLE;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.UV_RISK;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.VISIBILITY;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.WIND_DIRECTION;
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.WIND_SPEED;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.*;
 
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
 public class Parser extends XmlPullParserFactory {
 
 
@@ -74,37 +59,37 @@ public class Parser extends XmlPullParserFactory {
                                     result = entry.split(":");
                                     switch (result[0].trim()) {
                                         case MAXIMUM_TEMPERATURE:
-                                            item.setMaximumTemperature(result[1]);
+                                            item.setMaximumTemperature(entry);
                                             break;
                                         case MINIMUM_TEMPERATURE:
-                                            item.setMinimumTemperature(result[1]);
+                                            item.setMinimumTemperature(entry);
                                             break;
                                         case WIND_DIRECTION:
-                                            item.setWindDirection(result[1]);
+                                            item.setWindDirection(entry);
                                             break;
                                         case WIND_SPEED:
-                                            item.setWindSpeed(result[1]);
+                                            item.setWindSpeed(entry);
                                             break;
                                         case VISIBILITY:
-                                            item.setVisibility(result[1]);
+                                            item.setVisibility(entry);
                                             break;
                                         case PRESSURE:
-                                            item.setPressure(result[1]);
+                                            item.setPressure(entry);
                                             break;
                                         case HUMIDITY:
-                                            item.setHumidity(result[1]);
+                                            item.setHumidity(entry);
                                             break;
                                         case UV_RISK:
-                                            item.setUvRisk(result[1]);
+                                            item.setUvRisk(entry);
                                             break;
                                         case POLLUTION:
-                                            item.setPollution(result[1]);
+                                            item.setPollution(entry);
                                             break;
                                         case SUNRISE:
-                                            item.setSunrise(result[1]);
+                                            item.setSunrise(entry);
                                             break;
                                         case SUNSET:
-                                            item.setSunset(result[1]);
+                                            item.setSunset(entry);
                                             break;
                                         default:
                                     }
@@ -114,7 +99,7 @@ public class Parser extends XmlPullParserFactory {
                                 //item.setDate(parser.nextText());
                             } else if (name.equalsIgnoreCase(TITLE)) {
                                 Log.i("Attribute", "title");
-                                item.setTitle(parser.nextText().trim());
+                                item.setTitle(parser.nextText().trim().split(",")[0]);
                             }
                         } else if (forecast != null) {
                             if (name.equalsIgnoreCase(LINK)) {
@@ -128,7 +113,7 @@ public class Parser extends XmlPullParserFactory {
                                 forecast.setDate(new Date(parser.nextText()));
                             } else if (name.equalsIgnoreCase(TITLE)) {
                                 Log.i("Attribute", "title");
-                                forecast.setTitle(parser.nextText().trim());
+                                forecast.setTitle(parser.nextText().trim().split(",")[0]);
                             }
                         }
                         break;
