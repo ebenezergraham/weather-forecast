@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.preference.PreferenceManager;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -19,6 +21,7 @@ import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 public class WeatherService extends AsyncTask<String, Integer, Forecast> {
 
     public ForecastRepository forecastRepository = ForecastRepository.getInstance();
+
 
     private Parser parser;
     public Map<String, String> cities;

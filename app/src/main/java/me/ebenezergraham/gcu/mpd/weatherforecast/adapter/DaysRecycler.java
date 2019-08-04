@@ -46,7 +46,6 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
         holder.image.setImageResource(R.drawable.london);
         holder.minimumTemperature.setText(weatherDetail.getMinimumTemperature().split(":")[1]);
         holder.windSpeed.setText(weatherDetail.getWindSpeed());
-        holder.windDirection.setText(weatherDetail.getWindDirection());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

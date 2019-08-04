@@ -76,7 +76,6 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -88,13 +87,13 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Intent setting = new Intent(this,SettingsActivity.class);
-        startActivity(setting);
+
         if (id == R.id.nav_home) {
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_tools) {
-
+        } else if (id == R.id.action_settings) {
+            Intent setting = new Intent(this,SettingsActivity.class);
+            startActivity(setting);
 
         } else if (id == R.id.nav_share) {
             Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
