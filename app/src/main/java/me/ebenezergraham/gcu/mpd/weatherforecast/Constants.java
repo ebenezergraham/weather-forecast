@@ -1,4 +1,5 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast;
+
 /**
  * @author Ebenezer Graham
  * Matric Number: S1725987
@@ -17,9 +18,9 @@ public interface Constants {
     String WIND_SPEED = "Wind Speed";
     String VISIBILITY = "Visibility";
     String PRESSURE = "Pressure";
-    String HUMIDITY ="Humidity";
+    String HUMIDITY = "Humidity";
     String UV_RISK = "UV Risk";
     String POLLUTION = "Pollution";
     String SUNRISE = "Sunrise";
-    String SUNSET ="Sunset";
+    String SUNSET = "Sunset";
 }

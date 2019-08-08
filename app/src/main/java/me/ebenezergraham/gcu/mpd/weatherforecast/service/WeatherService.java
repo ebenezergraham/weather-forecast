@@ -33,6 +33,7 @@ public class WeatherService extends AsyncTask<String, Integer, Forecast> {
     protected Forecast doInBackground(String... strings) {
         int count = strings.length;
         Forecast forecast = null;
+
         for (int i = 0; i < count; i++) {
             forecast = parser.fetch(strings[i]);
             publishProgress((int) ((i / (float) count) * 100));
@@ -40,8 +41,6 @@ public class WeatherService extends AsyncTask<String, Integer, Forecast> {
         }
         return forecast;
     }
-
-
 
     public Map<String, Forecast> fetchWeatherForLocations() {
         Map<String, Forecast> list = new HashMap<>();

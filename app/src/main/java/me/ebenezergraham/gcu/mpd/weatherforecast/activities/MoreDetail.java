@@ -1,7 +1,9 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -29,8 +32,7 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
         WeatherDetail weatherDetail = (WeatherDetail) getIntent().getSerializableExtra("data");
         setContentView(R.layout.activity_more_detail);
         Toolbar toolbar = findViewById(R.id.toolbar);
-        //toolbar.setTitle(weatherDetail.getTitle());
-       // setSupportActionBar(toolbar);
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         TextView minTemp = findViewById(R.id.minimum_temperature);
@@ -51,6 +53,8 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
         uvRisk.setText(weatherDetail.getUvRisk());
         visibility.setText(weatherDetail.getVisibility());
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Log.d("test",sharedPreferences.getAll().keySet().toString() );
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);

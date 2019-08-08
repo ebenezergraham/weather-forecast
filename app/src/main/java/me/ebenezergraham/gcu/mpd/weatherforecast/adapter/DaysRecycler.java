@@ -2,6 +2,7 @@ package me.ebenezergraham.gcu.mpd.weatherforecast.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,11 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final WeatherDetail weatherDetail = weatherDetailList.get(position);
         holder.title.setText(weatherDetail.getTitle());
-        holder.image.setImageResource(R.drawable.london);
-        holder.minimumTemperature.setText(weatherDetail.getMinimumTemperature().split(":")[1]);
+        holder.image.setImageResource(R.drawable.overlay);
+        String temp = weatherDetail.getMinimumTemperature().split(":")[1];
+        boolean tempSetting = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("temperature",false);
+        temp = tempSetting ? temp.split("\\(")[0] : temp;
+        holder.minimumTemperature.setText(temp);
         holder.windSpeed.setText(weatherDetail.getWindSpeed());
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override

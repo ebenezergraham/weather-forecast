@@ -17,13 +17,29 @@ import java.util.List;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
 
-import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.*;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.CHANNEL;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.DESCRIPTION;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.HUMIDITY;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.ITEM;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.LINK;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.MAXIMUM_TEMPERATURE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.MINIMUM_TEMPERATURE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.POLLUTION;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.PRESSURE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.PUB_DATE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.SUNRISE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.SUNSET;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.TITLE;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.UV_RISK;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.VISIBILITY;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.WIND_DIRECTION;
+import static me.ebenezergraham.gcu.mpd.weatherforecast.Constants.WIND_SPEED;
 
 /**
  * @author Ebenezer Graham
  * Matric Number: S1725987
  */
-public class Parser extends XmlPullParserFactory {
+public class Parser {
 
 
     private static String baseUrl = "https://weather-broker-cdn.api.bbci.co.uk/en/forecast/rss/3day/";

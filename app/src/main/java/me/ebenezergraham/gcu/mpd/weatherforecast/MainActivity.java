@@ -23,10 +23,11 @@ import me.ebenezergraham.gcu.mpd.weatherforecast.service.WeatherService;
  * @author Ebenezer Graham
  * Matric Number: S1725987
  */
-public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     public static WeatherService weatherService = new WeatherService();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,24 +45,25 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state > 0 && tabs.getSelectedTabPosition() == 6) {
+                    viewPager.setCurrentItem(0);
+                } else if (state > 0 && tabs.getSelectedTabPosition() == 0) {
+                    viewPager.setCurrentItem(6);
+                }
+            }
+
+            @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                System.out.println("Position"+position+" PositionOffset"+positionOffset+" OffsetPixels"+positionOffsetPixels);
+
             }
 
             @Override
             public void onPageSelected(int position) {
 
             }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                if(state>0 && tabs.getSelectedTabPosition()==6){
-                    viewPager.setCurrentItem(0);
-                }else  if(state>0 && tabs.getSelectedTabPosition()==0){
-                    viewPager.setCurrentItem(6);
-                }
-            }
         });
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getResources().getString(R.string.app_name));
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

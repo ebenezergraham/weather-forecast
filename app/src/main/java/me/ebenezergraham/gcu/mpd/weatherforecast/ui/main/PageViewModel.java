@@ -22,9 +22,9 @@ public class PageViewModel extends ViewModel {
     public PageViewModel() {
     }
 
-    public void getData(final String location){
+    public void getData(final String location) {
         WeatherService weatherService = new WeatherService();
-        AsyncTask<String,Integer,Forecast> res = weatherService.execute(location);
+        AsyncTask<String, Integer, Forecast> res = weatherService.execute(location);
         try {
             setForecast(res.get());
         } catch (ExecutionException e) {

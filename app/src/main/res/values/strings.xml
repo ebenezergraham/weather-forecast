@@ -616,12 +616,12 @@
 
     <!-- Preference Titles -->
     <string name="messages_header">Settings</string>
-    <string name="sync_header">Temperature Configuration</string>
+    <string name="header">Temperature Configuration</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Username</string>
-    <string name="reply_title">Default update times</string>
+    <string name="username_title">Username</string>
+    <string name="time_title">Default update times</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Temperature unit (F)</string>
+    <string name="temperature">Show only Celsius</string>
 </resources>
