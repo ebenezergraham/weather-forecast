@@ -23,7 +23,7 @@ public class PageViewModel extends ViewModel {
     }
 
     public void getData(final String location) {
-        WeatherService weatherService = new WeatherService();
+        WeatherService weatherService = new WeatherService(this);
         AsyncTask<String, Integer, Forecast> res = weatherService.execute(location);
         try {
             setForecast(res.get());
@@ -32,7 +32,6 @@ public class PageViewModel extends ViewModel {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     public void setForecast(Forecast forecast) {

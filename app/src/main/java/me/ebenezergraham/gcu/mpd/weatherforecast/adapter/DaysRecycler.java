@@ -13,10 +13,9 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
 import me.ebenezergraham.gcu.mpd.weatherforecast.activities.MoreDetail;
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
 
 /**
@@ -25,11 +24,13 @@ import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
  */
 public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> {
 
-    List<WeatherDetail> weatherDetailList;
+    Forecast forecast;
     Context context;
+    String city;
 
-    public DaysRecycler(List<WeatherDetail> weatherDetailsList) {
-        this.weatherDetailList = weatherDetailsList;
+    public DaysRecycler(Forecast forecast,String city) {
+        this.forecast = forecast;
+        this.city = city;
     }
 
     @Override
@@ -42,11 +43,13 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        final WeatherDetail weatherDetail = weatherDetailList.get(position);
+        final WeatherDetail weatherDetail = forecast.getItems().get(position);
         holder.title.setText(weatherDetail.getTitle());
-        holder.image.setImageResource(R.drawable.overlay);
+        holder.image.setImageResource(getIdentifier(city.toLowerCase().replaceAll(" ","_"),"drawable"));
+
+//      holder.weatherIcon.setText(getIdentifier(weatherDetail.getTitle().toLowerCase().replaceAll(" ","_"),"string"));
         String temp = weatherDetail.getMinimumTemperature().split(":")[1];
-        boolean tempSetting = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("temperature",false);
+        boolean tempSetting = PreferenceManager.getDefaultSharedPreferences(context).getBoolean("temperature", false);
         temp = tempSetting ? temp.split("\\(")[0] : temp;
         holder.minimumTemperature.setText(temp);
         holder.windSpeed.setText(weatherDetail.getWindSpeed());
@@ -54,7 +57,7 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MoreDetail.class);
-                intent.putExtra("data",weatherDetail);
+                intent.putExtra("data", weatherDetail);
                 context.startActivity(intent);
             }
         });
@@ -62,12 +65,13 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return weatherDetailList.size();
+        return forecast.getItems().size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView title;
+        TextView weatherIcon;
         TextView minimumTemperature;
         TextView windSpeed;
         TextView windDirection;
@@ -78,11 +82,27 @@ public class DaysRecycler extends RecyclerView.Adapter<DaysRecycler.ViewHolder> 
             super(itemView);
             image = (ImageView) itemView.findViewById(R.id.card_image);
             title = (TextView) itemView.findViewById(R.id.card_title);
+            weatherIcon = (TextView) itemView.findViewById(R.id.weather);
             minimumTemperature = (TextView) itemView.findViewById(R.id.minimum_temperature);
             windDirection = (TextView) itemView.findViewById(R.id.wind_direction);
             windSpeed = (TextView) itemView.findViewById(R.id.wind_speed);
             cv = (CardView) itemView.findViewById(R.id.cv);
             button = (Button) itemView.findViewById(R.id.more_details);
         }
+    }
+
+    private int getIdentifier(String name, String defType) {
+        String packageName = context.getPackageName();
+        if(defType.equals("string")){
+            name = "wi_"+name;
+        }
+        int res;
+        try {
+            res = context.getResources().getIdentifier(name, defType, packageName);
+        }catch (Exception e){
+            res = context.getResources().getIdentifier("wi_cloud", defType, packageName);
+        }
+
+        return res;
     }
 }

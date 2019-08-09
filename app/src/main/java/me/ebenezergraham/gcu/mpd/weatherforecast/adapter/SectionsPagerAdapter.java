@@ -11,9 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.HashMap;
 import java.util.Map;
 
-import me.ebenezergraham.gcu.mpd.weatherforecast.MainActivity;
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
-import me.ebenezergraham.gcu.mpd.weatherforecast.service.WeatherService;
 import me.ebenezergraham.gcu.mpd.weatherforecast.ui.main.ForecastFragment;
 
 /**
@@ -26,7 +24,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     private static int[] TAB_TITLES = new int[]{R.string.glasgow, R.string.london, R.string.new_york, R.string.oman, R.string.mauritius, R.string.bangladesh, R.string.cape_coast};
     public static Map<String, String> cities;
     private final Context mContext;
-    WeatherService weatherService;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
@@ -39,7 +36,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         cities.put("Mauritius", "934154");
         cities.put("Bangladesh", "1185241");
         cities.put("Cape Coast", "2302357");
-        weatherService = MainActivity.weatherService;
     }
 
     @Override

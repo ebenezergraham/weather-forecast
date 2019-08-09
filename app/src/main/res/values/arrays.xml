@@ -9,4 +9,14 @@
         <item>8</item>
         <item>20</item>
     </string-array>
+
+    <array name="cities">
+        <item>@drawable/cape_coast</item>
+        <item>@drawable/glasgow</item>
+        <item>@drawable/bangladesh</item>
+        <item>@drawable/london</item>
+        <item>@drawable/mauritius</item>
+        <item>@drawable/oman</item>
+        <item>@drawable/new_york</item>
+    </array>
 </resources>

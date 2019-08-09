@@ -3,11 +3,6 @@
 
     <PreferenceCategory app:title="@string/messages_header">
 
-        <EditTextPreference
-            app:key="username"
-            app:title="@string/username_title"
-            app:useSimpleSummaryProvider="true" />
-
         <ListPreference
             app:defaultValue="8"
             app:entries="@array/time_entries"

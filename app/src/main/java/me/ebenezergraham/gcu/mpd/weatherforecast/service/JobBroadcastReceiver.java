@@ -10,14 +10,17 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.util.Calendar;
-
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
 public class JobBroadcastReceiver extends BroadcastReceiver {
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
 
     @Override
     public void onReceive(Context context, Intent ignore) {
-        Log.d("Broadcast", "Alarm service started");
+        Log.d("Broadcast", "Scheduled update job started");
         alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, WeatherUpdateService.class);
         alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
@@ -25,7 +28,6 @@ public class JobBroadcastReceiver extends BroadcastReceiver {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         int time = sharedPref.getInt("weather_update", 8);
 
-        // Set the alarm to start at approximately 8:00 p.m.
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, time);

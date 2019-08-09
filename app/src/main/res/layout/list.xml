@@ -39,22 +39,30 @@
                     android:contentDescription="@string/bg_description"
                     android:tint="@color/semiTransparentColor"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="20sp"
-                    android:padding="@dimen/detail_size"
-                    android:textColor="@android:color/white"
-                    android:id="@+id/weather"/>
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/minimum_temperature"
-                    android:layout_width="205dp"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/card_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="40sp" />
+                   <TextView
+                       android:id="@+id/minimum_temperature"
+                       android:layout_width="205dp"
+                       android:layout_height="wrap_content"
+                       android:padding="10dp"
+                       android:text="@string/card_content"
+                       android:textColor="@android:color/white"
+                       android:textSize="40sp" />
+
+                   <TextView
+                       android:id="@+id/weather"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:fontFamily="@font/weathericons"
+                       android:padding="@dimen/detail_size"
+                       android:textColor="@android:color/white"
+                       android:textSize="50sp" />
+               </LinearLayout>
+
+
             </RelativeLayout>
 
             <LinearLayout

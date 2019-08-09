@@ -12,13 +12,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 import me.ebenezergraham.gcu.mpd.weatherforecast.R;
 import me.ebenezergraham.gcu.mpd.weatherforecast.adapter.DaysRecycler;
 import me.ebenezergraham.gcu.mpd.weatherforecast.adapter.SectionsPagerAdapter;
 import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
-import me.ebenezergraham.gcu.mpd.weatherforecast.model.WeatherDetail;
 
 /**
  * @Author Ebenezer Graham
@@ -29,9 +26,10 @@ public class ForecastFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String ARG_SECTION_NAME = "section_name";
 
-    public PageViewModel pageViewModel;
-    RecyclerView recyclerView;
-    DaysRecycler daysRecycler;
+    private PageViewModel pageViewModel;
+    private RecyclerView recyclerView;
+    private DaysRecycler daysRecycler;
+    private String city;
 
     public static ForecastFragment newInstance(int index, String city) {
         ForecastFragment fragment = new ForecastFragment();
@@ -47,10 +45,7 @@ public class ForecastFragment extends Fragment {
         super.onCreate(savedInstanceState);
         pageViewModel = ViewModelProviders.of(this).get(PageViewModel.class);
 
-        int index = 1;
-        String city = "";
         if (getArguments() != null) {
-            index = getArguments().getInt(ARG_SECTION_NUMBER);
             city = getArguments().getString(ARG_SECTION_NAME);
         }
         pageViewModel.getData(SectionsPagerAdapter.cities.get(city));
@@ -63,8 +58,7 @@ public class ForecastFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         Forecast forecast = pageViewModel.getForecast().getValue();
-        List<WeatherDetail> data = forecast.getItems();
-        daysRecycler = new DaysRecycler(data);
+        daysRecycler = new DaysRecycler(forecast, city);
         recyclerView.setAdapter(daysRecycler);
         return root;
     }

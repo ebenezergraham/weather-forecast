@@ -1,9 +1,8 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast.activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.preference.PreferenceManager;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -45,7 +43,6 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
         TextView visibility = findViewById(R.id.visibility);
 
         humidity.setText(weatherDetail.getHumidity());
-        minTemp.setText(weatherDetail.getMinimumTemperature().split(":")[1]);
         windSpeed.setText(weatherDetail.getWindSpeed());
         windDirection.setText(weatherDetail.getWindDirection());
         sunrise.setText(weatherDetail.getSunrise());
@@ -53,8 +50,11 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
         uvRisk.setText(weatherDetail.getUvRisk());
         visibility.setText(weatherDetail.getVisibility());
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Log.d("test",sharedPreferences.getAll().keySet().toString() );
+        boolean tempSetting = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean("temperature", false);
+        String temp = weatherDetail.getMinimumTemperature().split(":")[1];
+        temp = tempSetting ? temp.split("\\(")[0] : temp;
+        minTemp.setText(temp);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -74,7 +74,6 @@ public class MoreDetail extends AppCompatActivity implements NavigationView.OnNa
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.more_detail, menu);
         return true;
     }

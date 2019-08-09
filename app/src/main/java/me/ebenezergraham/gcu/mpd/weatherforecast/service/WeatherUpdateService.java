@@ -1,30 +1,32 @@
 package me.ebenezergraham.gcu.mpd.weatherforecast.service;
 
-import android.app.job.JobParameters;
-import android.app.job.JobService;
+import android.app.IntentService;
+import android.content.Intent;
 import android.util.Log;
 
-import me.ebenezergraham.gcu.mpd.weatherforecast.util.Util;
+import androidx.annotation.Nullable;
 
-public class WeatherUpdateService extends JobService {
+import me.ebenezergraham.gcu.mpd.weatherforecast.model.Forecast;
+import me.ebenezergraham.gcu.mpd.weatherforecast.ui.main.PageViewModel;
+
+/**
+ * @author Ebenezer Graham
+ * Matric Number: S1725987
+ */
+public class WeatherUpdateService extends IntentService {
     private static final String TAG = WeatherUpdateService.class.getSimpleName();
 
-    @Override
-    public boolean onStartJob(JobParameters params) {
-        Log.d(TAG,"Job Started");
-        WeatherService weatherService = new WeatherService();
-
-        weatherService.execute();
-        //jobFinished(params,true);
-/*        Intent service = new Intent(getApplicationContext(), WeatherUpdateService.class);
-        getApplicationContext().startService(service);*/
-        jobFinished(params, true);
-        Util.scheduleJob(getApplicationContext());
-        return true;
+    public WeatherUpdateService() {
+        super(TAG);
     }
 
     @Override
-    public boolean onStopJob(JobParameters params) {
-        return true;
+    protected void onHandleIntent(@Nullable Intent intent) {
+        Log.d(TAG,"Job Started");
+                WeatherService weatherService = new WeatherService(new PageViewModel());
+                for (Forecast forecast: ForecastRepository.getInstance().forecastList){
+                    weatherService.execute(forecast.getLocationId());
+                }
+
     }
 }

@@ -18,6 +18,7 @@ public class Forecast {
     private Date date;
     private String imageTitle;
     private URL imageUrl;
+    private String locationId;
 
     List<WeatherDetail> items;
 
@@ -100,5 +101,13 @@ public class Forecast {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(String locationId) {
+        this.locationId = locationId;
     }
 }
